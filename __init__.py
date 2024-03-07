@@ -31,7 +31,7 @@ def apply_goresym_info(bv: BinaryView):
         return
 
     bv.begin_undo_actions()
-    if 'UserFunction' in data:
+    if 'UserFunctions' in data:
         add_functions(bv, data['UserFunctions'])
     if 'StdFunctions' in data:
         add_functions(bv, data['StdFunctions'])
