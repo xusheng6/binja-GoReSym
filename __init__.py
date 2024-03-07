@@ -25,9 +25,9 @@ def apply_goresym_info(bv: BinaryView):
         return
 
     try:
-        data = json.loads(open(file, 'r').read())
+        data = json.loads(open(file, 'rb').read())
     except:
-        log_warn('fail to load file %s as json', file)
+        log_warn('fail to load file %s as json' % file)
         return
 
     bv.begin_undo_actions()
