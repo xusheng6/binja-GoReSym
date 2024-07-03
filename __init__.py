@@ -29,7 +29,7 @@ def add_functions(bv, functions):
 
             sym = Symbol(SymbolType.FunctionSymbol, start, name, name, name)
             bv.define_user_symbol(sym)
-            pkg_name = func['PackageName']
+            pkg_name = func['PackageName'].replace('/', '_')
             add_component(bv ,name, pkg_name)
         except:
             pass
