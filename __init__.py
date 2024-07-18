@@ -1,6 +1,20 @@
 from binaryninja import *
 import json
 
+def add_component(bv, func_name, pkg_name):
+    functions = bv.get_functions_by_name(func_name)
+    if functions:
+        func = functions[0]
+    else:
+        return
+    
+    component = bv.get_component_by_path(pkg_name)
+    if not component:
+        component = bv.create_component(pkg_name)
+
+    component.add_function(func)
+
+
 
 def add_functions(bv, functions):
     if functions is None:
@@ -15,6 +29,8 @@ def add_functions(bv, functions):
 
             sym = Symbol(SymbolType.FunctionSymbol, start, name, name, name)
             bv.define_user_symbol(sym)
+            pkg_name = func['PackageName'].replace('/', '_')
+            add_component(bv ,name, pkg_name)
         except:
             pass
 
